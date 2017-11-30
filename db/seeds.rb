@@ -10,4 +10,14 @@ Cocktail.destroy_all
   end
 end
 
+ingredients = ["basil", "lemon", "mint", "soda", "gingerale", "tonic"]
+
+ingredients.each do |ingredient|
+  ing = Ingredient.new(name:ingredient)
+
+  if ing.save
+    puts "#{ing.name} saved"
+  end
+end
+
 puts "seedind finished"
