@@ -2,7 +2,7 @@
 
 
 <% if @cocktail.doses[0] %>
-  <h3>This is what you need to make it</h3>
+  <h3>This is what you need</h3>
 <% else  %>
   <h3>Add the ingredients for <b><%= @cocktail.name %></b> </h3>
 <% end %>
@@ -20,6 +20,17 @@
   </li>
   <% end %>
 </ul>
+
+<h1>Add ingredients to <%= @cocktail.name %></h1>
+
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :description %>
+  <%= f.input :ingredient, collection: @ingredients, selected: @ingredients[0]%>
+
+  <%= f.button :submit %>
+<% end %>
+
 
 
 <p><%= link_to "Add ingredients", new_cocktail_dose_path(@cocktail) %></p>
