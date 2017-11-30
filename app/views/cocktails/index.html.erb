@@ -5,11 +5,11 @@
     <% @cocktails.each do |cocktail| %>
     <div class="col-xs-12 col-sm-4">
 
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('./assets/cocktail<%=rand(1..8)%>.png');">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_path "cocktail"+rand(1..8).to_s+".png" %>);">
           <div class="card-category">With Alcohol</div>
           <div class="card-description">
-            <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
-            <p> <%= link_to "Delete me", cocktail_path(cocktail), method: :delete %></p>
+            <h2><%= link_to cocktail.name, cocktail_path(cocktail), class: "card-name" %></h2>
+            <p> <%= link_to "Delete me", cocktail_path(cocktail), method: :delete, class: "card-delete" %></p>
           </div>
           <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/JakobBe">
         </div>

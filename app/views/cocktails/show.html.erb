@@ -1,19 +1,26 @@
-<h1><%= @cocktail.name %></h1>
+<h1 class="text-center"><%= @cocktail.name %></h1>
 
-<h3>These are the ingredients</h3>
+
+<% if @cocktail.doses[0] %>
+  <h3>This is what you need to make it</h3>
+<% else  %>
+  <h3>Add the ingredients for <b><%= @cocktail.name %></b> </h3>
+<% end %>
 
 <ul>
   <% @cocktail.doses.each do |dose| %>
   <li>
 
-    <p><%= dose.description %> of <%=Ingredient.find(dose.ingredient_id).name %> </p>
-    <p><%= link_to "Delete", cocktail_dose_path(@cocktail, dose), method: :delete %></p>
+    <p>
+      <%= dose.description %> of <%=Ingredient.find(dose.ingredient_id).name %> <%= link_to cocktail_dose_path(@cocktail, dose), method: :delete do %>
+      <%= image_tag 'delete.png' , {class: "delete-ing"} %>
+      <% end %>
+    </p>
 
   </li>
   <% end %>
 </ul>
 
 
-<p><%= link_to "See all cocktails", root_path %></p>
 <p><%= link_to "Add ingredients", new_cocktail_dose_path(@cocktail) %></p>
 
