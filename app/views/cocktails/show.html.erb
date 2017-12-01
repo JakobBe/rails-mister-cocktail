@@ -1,37 +1,55 @@
-<h1 class="text-center"><%= @cocktail.name %></h1>
 
-
-<% if @cocktail.doses[0] %>
-  <h3>This is what you need</h3>
-<% else  %>
-  <h3>Add the ingredients for <b><%= @cocktail.name %></b> </h3>
+<% if @img.include?(@cocktail.name) %>
+  <div class="banner banner-drink" style="background-image: linear-gradient(-225deg, rgba(200,101,80,0.6) 0%, rgba(50,36,61,0.6) 50%), url(<%= image_path "cocktail_"+@cocktail.name+".png" %>);">
+    <div class="banner-content">
+      <h1><%= @cocktail.name %></h1>
+    </div>
+  </div>
+<% else %>
+  <div class="banner banner-drink" style="background-image: linear-gradient(-225deg, rgba(200,101,80,0.6) 0%, rgba(50,36,61,0.6) 50%), url(<%= image_path "cocktail_.png" %>);">
+    <div class="banner-content">
+      <h1><%= @cocktail.name %></h1>
+    </div>
+  </div>
 <% end %>
 
-<ul>
-  <% @cocktail.doses.each do |dose| %>
-  <li>
 
-    <p>
-      <%= dose.description %> of <%=Ingredient.find(dose.ingredient_id).name %> <%= link_to cocktail_dose_path(@cocktail, dose), method: :delete do %>
-      <%= image_tag 'delete.png' , {class: "delete-ing"} %>
+<div class="container main-show">
+
+
+  <div class="ingredients-body">
+    <% if @cocktail.doses[0] %>
+      <h3>This is what you need</h3>
+    <% else  %>
+      <h3>There are no ingredients for <b><%= @cocktail.name %></b> </h3>
+    <% end %>
+
+    <ul>
+      <% @cocktail.doses.each do |dose| %>
+      <li>
+
+        <p>
+          <%= dose.description %> of <%=Ingredient.find(dose.ingredient_id).name %> <%= link_to cocktail_dose_path(@cocktail, dose), method: :delete do %>
+          <%= image_tag 'delete.png' , {class: "delete-ing"} %>
+          <% end %>
+        </p>
+
+      </li>
       <% end %>
-    </p>
+    </ul>
+  </div>
 
-  </li>
-  <% end %>
-</ul>
+  <div class="form-ing">
+    <h4>Add more ingredients <b>here</b></h4>
 
-<h1>Add ingredients to <%= @cocktail.name %></h1>
+    <%= simple_form_for [@cocktail, @dose] do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :description %>
+      <%= f.input :ingredient, collection: @ingredients, selected: @ingredients[0]%>
 
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :description %>
-  <%= f.input :ingredient, collection: @ingredients, selected: @ingredients[0]%>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
 
-  <%= f.button :submit %>
-<% end %>
-
-
-
-<p><%= link_to "Add ingredients", new_cocktail_dose_path(@cocktail) %></p>
 

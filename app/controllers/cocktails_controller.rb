@@ -16,10 +16,12 @@ class CocktailsController < ApplicationController
   end
 
   def index
+    @img = ["Gin", "Happy", "Mojito", "Spritz", "Strawberry", "SuperGin", "Vodka", "Whiskey"]
     @cocktails = Cocktail.all
   end
 
   def show
+    @img = ["Gin", "Happy", "Mojito", "Spritz", "Strawberry", "SuperGin", "Vodka", "Whiskey"]
     @dose = Dose.new
     @ingredients = Ingredient.all
   end

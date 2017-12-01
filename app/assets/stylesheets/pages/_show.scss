@@ -2,4 +2,41 @@
   border-radius: 50%;
   width: 10px;
   margin-left: 30px;
+  text-align: right;
 }
+
+.main-show {
+  padding: 0 10%;
+}
+
+
+.form-ing {
+  text-size: 1px;
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  color: $dark-red;
+  margin-bottom: 20px;
+}
+
+.ingredients-body {
+  ul {
+    list-style-type: none;
+    border-bottom: 1px solid $dark-red;
+    font-size: 20px;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
+  }
+}
+
+.banner-drink {
+  padding: 0px 20px;
+
+  h1{
+    color: $dark-red;
+    font-family: 'Spectral SC', serif;
+  }
+}
+
+

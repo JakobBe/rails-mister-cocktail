@@ -1,9 +1,17 @@
-<h1>Make a new Cocktail</h1>
+<div class="wrap">
+  <div class="head-create">
+    <h1 class="text-center">Create a new cocktail</h1>
+    <p class="text-center">You can add the ingredients after you created your cocktail.</p>
+  </div>
 
-<%= simple_form_for(@cocktail) do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :name %>
 
-  <%= f.button :submit %>
-<% end %>
+  <div class="main-create">
+    <%= simple_form_for(@cocktail) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :name %>
+
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
 
